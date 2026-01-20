@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.Json.Serialization;
 
 namespace RedBerryApi.Models
 {
@@ -10,7 +11,9 @@ namespace RedBerryApi.Models
         public bool? IsAvailable { get; set; }
 
         // Navigation properties
+        [JsonIgnore]
         public virtual PropertyListing PropertyListing { get; set; }
+        [JsonIgnore]
         public virtual Amenity Amenity { get; set; }
     }
 }
