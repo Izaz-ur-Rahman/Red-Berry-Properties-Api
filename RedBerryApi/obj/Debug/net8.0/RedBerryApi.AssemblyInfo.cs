@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RedBerryApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5da6b2c2ddd6a1f46f5f28671306155ce5ce8f7f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ea68afac3d25bf3ddb95a6efd6c33252d53fe408")]
 [assembly: System.Reflection.AssemblyProductAttribute("RedBerryApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RedBerryApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

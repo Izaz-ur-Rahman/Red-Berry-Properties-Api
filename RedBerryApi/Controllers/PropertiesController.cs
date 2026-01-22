@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using RedBerryApi.Data;
 using RedBerryApi.Dtos;
 using RedBerryApi.Models;
+using System;
 
 namespace RedBerryApi.Controllers
 {
@@ -247,137 +248,6 @@ namespace RedBerryApi.Controllers
             return Ok(result);
         }
 
-        //[HttpGet("GetPropertyById/{id}")]
-        //public IActionResult GetPropertyById(int id)
-        //{
-        //    try
-        //    {
-        //        var property = _db.PropertyListing.Find(id);
-        //        return Ok(property);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return BadRequest(ex.Message);
-        //    }
-        //}
-
-        // POST: api/Properties/AddProperty
-        //[HttpPost("AddProperty")]
-        //[DisableRequestSizeLimit]
-
-        //[Consumes("multipart/form-data")]
-        //public async Task<IActionResult> AddProperty([FromForm] string property, [FromForm] IFormFile mainImage, [FromForm] List<IFormFile> subImages)
-
-        //    {
-        //    try
-        //    {
-        //        var model = JsonConvert.DeserializeObject<PropertyListing>(property);
-        //        var uploadPath = Path.Combine(_env.WebRootPath, "RedBerryFiles", "Propertiesfiles");
-
-        //        if (!Directory.Exists(uploadPath))
-        //            Directory.CreateDirectory(uploadPath);
-
-        //        // Main image
-        //        if (mainImage != null)
-        //        {
-        //            var mainFileName = Guid.NewGuid() + Path.GetExtension(mainImage.FileName);
-        //            var mainImagePath = Path.Combine(uploadPath, mainFileName);
-        //            using (var stream = new FileStream(mainImagePath, FileMode.Create))
-        //            {
-        //                await mainImage.CopyToAsync(stream);
-        //            }
-        //            model.MainImage = "/RedBerryFiles/Propertiesfiles/" + mainFileName;
-        //        }
-
-        //        // Sub images
-        //        var subImagePaths = new List<string>();
-        //        if (subImages != null && subImages.Any())
-        //        {
-        //            foreach (var file in subImages.Take(4))
-        //            {
-        //                var subFileName = Guid.NewGuid() + Path.GetExtension(file.FileName);
-        //                var subImagePath = Path.Combine(uploadPath, subFileName);
-        //                using (var stream = new FileStream(subImagePath, FileMode.Create))
-        //                {
-        //                    await file.CopyToAsync(stream);
-        //                }
-        //                subImagePaths.Add("/RedBerryFiles/Propertiesfiles/" + subFileName);
-        //            }
-        //            model.SubImage = string.Join(",", subImagePaths);
-        //        }
-
-        //        model.CreatedDate = DateTime.UtcNow;
-        //        model.Status = "Active";
-        //        model.Off_plan = model.ListingType == "Off-Plan";
-        //        model.Property_purpose = model.ListingType == "For Rent" ? "Rent" : "Sell";
-
-        //        _db.PropertyListing.Add(model);
-        //        _db.SaveChanges();
-
-        //        return Ok(new { PropertyId = model.Id });
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return BadRequest(ex.Message);
-        //    }
-        //}
-        //[HttpPost("AddProperty")]
-        //[DisableRequestSizeLimit]
-        //[Consumes("multipart/form-data")]
-        //public async Task<IActionResult> AddProperty([FromForm] AddPropertyDto dto)
-        //{
-        //    try
-        //    {
-        //        var model = JsonConvert.DeserializeObject<PropertyListing>(dto.Property);
-
-        //        var uploadPath = Path.Combine(_env.WebRootPath, "RedBerryFiles", "Propertiesfiles");
-        //        if (!Directory.Exists(uploadPath))
-        //            Directory.CreateDirectory(uploadPath);
-
-        //        // Main image
-        //        if (dto.MainImage != null)
-        //        {
-        //            var mainFileName = Guid.NewGuid() + Path.GetExtension(dto.MainImage.FileName);
-        //            var mainImagePath = Path.Combine(uploadPath, mainFileName);
-        //            using (var stream = new FileStream(mainImagePath, FileMode.Create))
-        //            {
-        //                await dto.MainImage.CopyToAsync(stream);
-        //            }
-        //            model.MainImage = "/RedBerryFiles/Propertiesfiles/" + mainFileName;
-        //        }
-
-        //        // Sub images
-        //        var subImagePaths = new List<string>();
-        //        if (dto.SubImages != null && dto.SubImages.Any())
-        //        {
-        //            foreach (var file in dto.SubImages.Take(4))
-        //            {
-        //                var subFileName = Guid.NewGuid() + Path.GetExtension(file.FileName);
-        //                var subImagePath = Path.Combine(uploadPath, subFileName);
-        //                using (var stream = new FileStream(subImagePath, FileMode.Create))
-        //                {
-        //                    await file.CopyToAsync(stream);
-        //                }
-        //                subImagePaths.Add("/RedBerryFiles/Propertiesfiles/" + subFileName);
-        //            }
-        //            model.SubImage = string.Join(",", subImagePaths);
-        //        }
-
-        //        model.CreatedDate = DateTime.UtcNow;
-        //        model.Status = "Active";
-        //        model.Off_plan = model.ListingType == "Off-Plan";
-        //        model.Property_purpose = model.ListingType == "For Rent" ? "Rent" : "Sell";
-
-        //        _db.PropertyListing.Add(model);
-        //        _db.SaveChanges();
-
-        //        return Ok(new { PropertyId = model.Id });
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return BadRequest(ex.Message);
-        //    }
-        //}
         [HttpPost("AddProperty")]
         [DisableRequestSizeLimit]
         [Consumes("multipart/form-data")]
@@ -456,72 +326,6 @@ namespace RedBerryApi.Controllers
                 return BadRequest(ex.InnerException?.Message ?? ex.Message);
             }
         }
-
-        //[HttpPost("AddProperty")]
-        //[DisableRequestSizeLimit]
-        //[Consumes("multipart/form-data")]
-        //public async Task<IActionResult> AddProperty([FromForm] AddPropertyDto dto)
-        //{
-        //    try
-        //    {
-        //        var model = new PropertyListing
-        //        {
-        //            Title = dto.Title,
-        //            PropertyType = dto.PropertyType,
-        //            ListingType = dto.ListingType,
-        //            PriceCurrency = dto.PriceCurrency,
-
-        //            Bedrooms = dto.Bedrooms,
-        //            Bathrooms = dto.Bathrooms,
-        //            City = dto.City,
-        //            Neighborhood = dto.Neighborhood,
-        //            CreatedDate = DateTime.UtcNow,
-        //            Status = "Active",
-        //            Off_plan = dto.ListingType == "Off-Plan",
-        //            Property_purpose = dto.ListingType == "For Rent" ? "Rent" : "Sell"
-        //        };
-
-        //        var uploadPath = Path.Combine(_env.WebRootPath, "RedBerryFiles", "Propertiesfiles");
-        //        if (!Directory.Exists(uploadPath)) Directory.CreateDirectory(uploadPath);
-
-        //        // Main image
-        //        if (dto.MainImage != null)
-        //        {
-        //            var mainFileName = Guid.NewGuid() + Path.GetExtension(dto.MainImage.FileName);
-        //            var mainImagePath = Path.Combine(uploadPath, mainFileName);
-        //            using (var stream = new FileStream(mainImagePath, FileMode.Create))
-        //            {
-        //                await dto.MainImage.CopyToAsync(stream);
-        //            }
-        //            model.MainImage = "/RedBerryFiles/Propertiesfiles/" + mainFileName;
-        //        }
-
-        //        // Sub images
-        //        if (dto.SubImages != null && dto.SubImages.Any())
-        //        {
-        //            var subImagePaths = new List<string>();
-        //            foreach (var file in dto.SubImages.Take(4))
-        //            {
-        //                var subFileName = Guid.NewGuid() + Path.GetExtension(file.FileName);
-        //                var subImagePath = Path.Combine(uploadPath, subFileName);
-        //                using (var stream = new FileStream(subImagePath, FileMode.Create))
-        //                    await file.CopyToAsync(stream);
-
-        //                subImagePaths.Add("/RedBerryFiles/Propertiesfiles/" + subFileName);
-        //            }
-        //            model.SubImage = string.Join(",", subImagePaths);
-        //        }
-
-        //        _db.PropertyListing.Add(model);
-        //        _db.SaveChanges();
-
-        //        return Ok(new { PropertyId = model.Id });
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return BadRequest(ex.Message);
-        //    }
-        //}
 
         [HttpPost("UpdateProperty")]
         [DisableRequestSizeLimit]
@@ -755,14 +559,25 @@ namespace RedBerryApi.Controllers
             }
         }
 
-        // POST: api/Properties/AddPropertyAmenity
+       
         [HttpPost("AddPropertyAmenity")]
-        public IActionResult AddPropertyAmenity(List<PropertyAmenity> model)
+        public IActionResult AddPropertyAmenity([FromBody] List<PropertyAmenityDto> model)
         {
             try
             {
-                _db.PropertyAmenities.AddRange(model);
+                if (model == null || model.Count == 0)
+                    return BadRequest("Model is empty");
+
+                var entities = model.Select(x => new PropertyAmenity
+                {
+                    PropertyId = x.PropertyId,
+                    AmenityId = x.AmenityId,
+                    IsAvailable = x.IsAvailable
+                }).ToList();
+
+                _db.PropertyAmenities.AddRange(entities);
                 _db.SaveChanges();
+
                 return Ok("Property Amenities Added");
             }
             catch (Exception ex)
@@ -869,8 +684,331 @@ namespace RedBerryApi.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        
+            // GET: api/Properties/GetRentalProperties
+            [HttpGet("GetRentalProperties")]
+            public async Task<IActionResult> RentalProperties(int pageNumber = 1, int pageSize = 6,
+                                                              string city = null,
+                                                              string propertyType = null,
+                                                              string price = null,
+                                                              int? bedrooms = null)
+            {
+                try
+                {
+                    var q = _db.PropertyListing.Where(x => x.ListingType == "For Rent").OrderByDescending(p => p.Id).AsQueryable();
 
-        private string GenerateSlug(string title)
+                    if (!string.IsNullOrWhiteSpace(city))
+                        q = q.Where(p => p.City == city);
+
+                    if (!string.IsNullOrWhiteSpace(propertyType))
+                        q = q.Where(p => p.PropertyType == propertyType);
+
+                    if (bedrooms.HasValue)
+                    {
+                        int b = bedrooms.Value;
+                        q = b == 3
+                            ? q.Where(p => (p.VillaBedrooms >= 3) || (p.Bedrooms >= 3))
+                            : q.Where(p => (p.VillaBedrooms == b) || (p.Bedrooms == b));
+                    }
+
+                    if (!string.IsNullOrWhiteSpace(price))
+                    {
+                        q = price == "low" ? q.OrderByDescending(p => p.SalePrice) : q.OrderBy(p => p.SalePrice);
+                    }
+
+                    var totalCount = await q.CountAsync();
+                    var data = await q.Skip((pageNumber - 1) * pageSize)
+                                      .Take(pageSize)
+                                      .ToListAsync();
+
+                    return Ok(new { TotalCount = totalCount, PageNumber = pageNumber, PageSize = pageSize, Data = data });
+                }
+                catch (Exception ex)
+                {
+                    // Log error
+                    return BadRequest(ex.Message);
+                }
+            }
+
+            // GET: api/Properties/GetSecondryProperties
+            [HttpGet("GetSecondryProperties")]
+            public async Task<IActionResult> SecondryProperties(int pageNumber = 1, int pageSize = 6,
+                                                                string city = null,
+                                                                string propertyType = null,
+                                                                string price = null,
+                                                                int? bedrooms = null)
+            {
+                try
+                {
+                    var q = _db.PropertyListing.Where(x => x.ListingType == "For Sale").OrderByDescending(p => p.Id).AsQueryable();
+
+                    if (!string.IsNullOrWhiteSpace(city))
+                        q = q.Where(p => p.City == city);
+
+                    if (!string.IsNullOrWhiteSpace(propertyType))
+                        q = q.Where(p => p.PropertyType == propertyType);
+
+                    if (bedrooms.HasValue)
+                    {
+                        int b = bedrooms.Value;
+                        q = b == 3
+                            ? q.Where(p => (p.VillaBedrooms >= 3) || (p.Bedrooms >= 3))
+                            : q.Where(p => (p.VillaBedrooms == b) || (p.Bedrooms == b));
+                    }
+
+                    if (!string.IsNullOrWhiteSpace(price))
+                    {
+                        q = price == "low" ? q.OrderByDescending(p => p.SalePrice) : q.OrderBy(p => p.SalePrice);
+                    }
+
+                    var totalCount = await q.CountAsync();
+                    var data = await q.Skip((pageNumber - 1) * pageSize)
+                                      .Take(pageSize)
+                                      .ToListAsync();
+
+                    return Ok(new { TotalCount = totalCount, PageNumber = pageNumber, PageSize = pageSize, Data = data });
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest(ex.Message);
+                }
+            }
+
+            // GET: api/Properties/GetPropertiesbayut
+            [HttpGet("GetPropertiesbayut")]
+            public async Task<IActionResult> GetPropertiesbayut()
+            {
+                try
+                {
+                    var data = await _db.PropertyListing
+                        .Where(p => p.Status == "Active")
+                        .Select(p => new
+                        {
+                            p.Id,
+                            p.Title,
+                            p.PropertyType,
+                            p.ListingType,
+                            p.PriceCurrency,
+                            p.MainImage,
+                            p.SubImage,
+                            p.PropertySlug,
+                            Amenities = p.PropertyAmenities.Select(pa => new
+                            {
+                                pa.AmenityId,
+                                pa.Amenity.AmenityName,
+                                pa.Amenity.Icon
+                            }).ToList()
+                        })
+                        .ToListAsync();
+
+                    return Ok(new { Data = data });
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest(ex.Message);
+                }
+            }
+
+            // GET: api/Properties/GetPropertyList
+            [HttpGet("GetPropertyList")]
+            public async Task<IActionResult> GetPropertyList(int pageNumber = 1, int pageSize = 6,
+                                                             string listingType = null,
+                                                             string city = null,
+                                                             string propertyType = null,
+                                                             string price = null,
+                                                             int? bedrooms = null)
+            {
+                try
+                {
+                    var q = _db.PropertyListing.AsQueryable();
+
+                    if (!string.IsNullOrWhiteSpace(listingType))
+                        q = q.Where(p => p.ListingType == listingType);
+
+                    if (!string.IsNullOrWhiteSpace(city))
+                        q = q.Where(p => p.City == city);
+
+                    if (!string.IsNullOrWhiteSpace(propertyType))
+                        q = q.Where(p => p.PropertyType == propertyType);
+
+                    if (bedrooms.HasValue)
+                    {
+                        int b = bedrooms.Value;
+                        q = b == 3
+                            ? q.Where(p => (p.VillaBedrooms >= 3) || (p.Bedrooms >= 3))
+                            : q.Where(p => (p.VillaBedrooms == b) || (p.Bedrooms == b));
+                    }
+
+                    if (!string.IsNullOrWhiteSpace(price) && price.Contains('-'))
+                    {
+                        var parts = price.Split('-');
+                        if (decimal.TryParse(parts[0], out var min))
+                            q = q.Where(p => (p.SalePrice >= min) || (p.RentalPrice >= min) || (p.OffPrice >= min));
+                        if (decimal.TryParse(parts[1], out var max))
+                            q = q.Where(p => (p.SalePrice <= max) || (p.RentalPrice <= max) || (p.OffPrice <= max));
+                    }
+
+                    var totalCount = await q.CountAsync();
+
+                    var data = await q.Skip((pageNumber - 1) * pageSize)
+                                      .Take(pageSize)
+                                      .Select(p => new PropertyListDTO
+                                      {
+                                          Id = p.Id,
+                                          Title = p.Title,
+                                          PropertyType = p.PropertyType,
+                                          ListingType = p.ListingType,
+                                          PriceCurrency = p.PriceCurrency,
+                                          Price = p.ListingType == "Off-Plan" ? p.OffPrice : p.ListingType == "For Rent" ? p.RentalPrice : p.SalePrice,
+                                          Area = p.PropertyType == "Apartment" ? p.BuiltUpArea : p.PropertyType == "Villa" ? p.VillaBuiltUpArea : p.PropertyType == "Commercial" ? p.CommercialBuiltUpArea : p.BuiltUpArea,
+                                          Bedrooms = p.PropertyType == "Apartment" ? p.Bedrooms : p.VillaBedrooms,
+                                          Bathrooms = p.PropertyType == "Apartment" ? p.Bathrooms : p.VillaBathrooms,
+                                          ParkingSpaces = p.PropertyType == "Commercial" ? p.CommercialParkingSpaces : p.PropertyType == "Villa" ? p.VillaParkingSpaces : p.ParkingSpaces,
+                                          City = p.City,
+                                          Neighborhood = p.Neighborhood,
+                                          PropertySlug = p.PropertySlug,
+                                          CreatedDate = p.CreatedDate,
+                                          MainImage = p.MainImage
+                                      })
+                                      .ToListAsync();
+
+                    return Ok(new { TotalCount = totalCount, PageNumber = pageNumber, PageSize = pageSize, Data = data });
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest(ex.Message);
+                }
+            }
+
+            // GET: api/Properties/GetPropertydetailbyId
+            [HttpGet("GetPropertydetailbyId")]
+            public async Task<IActionResult> GetPropertydetailbyId(int id)
+            {
+                try
+                {
+                    var property = await _db.PropertyListing
+                        .Include(p => p.PropertyAmenities)
+                        .ThenInclude(pa => pa.Amenity)
+                        .ThenInclude(a => a.AmenityCategory)
+                        .FirstOrDefaultAsync(p => p.Id == id);
+
+                    if (property == null) return NotFound();
+
+                    return Ok(property); // You can map to DTO if needed
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest(ex.Message);
+                }
+            }
+
+            // GET: api/Properties/GetPropertydetailbySlug
+            [HttpGet("GetPropertydetailbySlug")]
+            public async Task<IActionResult> GetPropertydetailbySlug(string name)
+            {
+                try
+                {
+                    var property = await _db.PropertyListing
+                        .Include(p => p.PropertyAmenities)
+                        .ThenInclude(pa => pa.Amenity)
+                        .ThenInclude(a => a.AmenityCategory)
+                        .FirstOrDefaultAsync(p => p.PropertySlug.Trim() == name.Trim());
+
+                    if (property == null) return NotFound();
+
+                    return Ok(property);
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest(ex.Message);
+                }
+            }
+
+            // GET: api/Properties/GetOffPlanPropertyList
+            [HttpGet("GetOffPlanPropertyList")]
+            public async Task<IActionResult> GetOffPlanPropertyList(int pageNumber = 1, int pageSize = 6,
+                                                                   string city = null,
+                                                                   string propertyType = null,
+                                                                   string price = null,
+                                                                   int? bedrooms = null)
+            {
+                try
+                {
+                    var q = _db.PropertyListing.Where(x => x.ListingType == "Off-Plan").OrderByDescending(p => p.Id).AsQueryable();
+
+                    if (!string.IsNullOrWhiteSpace(city))
+                        q = q.Where(p => p.City == city);
+
+                    if (!string.IsNullOrWhiteSpace(propertyType))
+                        q = q.Where(p => p.PropertyType == propertyType);
+
+                    if (bedrooms.HasValue)
+                    {
+                        int b = bedrooms.Value;
+                        q = b == 3
+                            ? q.Where(p => (p.VillaBedrooms >= 3) || (p.Bedrooms >= 3))
+                            : q.Where(p => (p.VillaBedrooms == b) || (p.Bedrooms == b));
+                    }
+
+                    if (!string.IsNullOrWhiteSpace(price))
+                        q = price == "low" ? q.OrderByDescending(p => p.OffPrice) : q.OrderBy(p => p.OffPrice);
+
+                    var totalCount = await q.CountAsync();
+                    var data = await q.Skip((pageNumber - 1) * pageSize)
+                                      .Take(pageSize)
+                                      .Select(p => new PropertyListDTO
+                                      {
+                                          Id = p.Id,
+                                          Title = p.Title,
+                                          PropertyType = p.PropertyType,
+                                          ListingType = p.ListingType,
+                                          PriceCurrency = p.PriceCurrency,
+                                          Price = p.OffPrice,
+                                          Area = p.PropertyType == "Apartment" ? p.BuiltUpArea : p.PropertyType == "Villa" ? p.VillaBuiltUpArea : p.PropertyType == "Commercial" ? p.CommercialBuiltUpArea : p.BuiltUpArea,
+                                          Bedrooms = p.PropertyType == "Apartment" ? p.Bedrooms : p.VillaBedrooms,
+                                          Bathrooms = p.PropertyType == "Apartment" ? p.Bathrooms : p.VillaBathrooms,
+                                          ParkingSpaces = p.PropertyType == "Commercial" ? p.CommercialParkingSpaces : p.PropertyType == "Villa" ? p.VillaParkingSpaces : p.ParkingSpaces,
+                                          City = p.City,
+                                          Neighborhood = p.Neighborhood,
+                                          PropertySlug = p.PropertySlug,
+                                          CreatedDate = p.CreatedDate,
+                                          MainImage = p.MainImage
+                                      })
+                                      .ToListAsync();
+
+                    return Ok(new { TotalCount = totalCount, PageNumber = pageNumber, PageSize = pageSize, Data = data });
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest(ex.Message);
+                }
+            }
+
+            // GET: api/Properties/GetRentalPropertyList
+            [HttpGet("GetRentalPropertyList")]
+            public async Task<IActionResult> GetRentalPropertyList(int pageNumber = 1, int pageSize = 6,
+                                                                   string city = null,
+                                                                   string propertyType = null,
+                                                                   string price = null,
+                                                                   int? bedrooms = null)
+            {
+                return await RentalProperties(pageNumber, pageSize, city, propertyType, price, bedrooms);
+            }
+
+            // GET: api/Properties/GetSecondryPropertyList
+            [HttpGet("GetSecondryPropertyList")]
+            public async Task<IActionResult> GetSecondryPropertyList(int pageNumber = 1, int pageSize = 6,
+                                                                     string city = null,
+                                                                     string propertyType = null,
+                                                                     string price = null,
+                                                                     int? bedrooms = null)
+            {
+                return await SecondryProperties(pageNumber, pageSize, city, propertyType, price, bedrooms);
+            }
+        
+    
+
+    private string GenerateSlug(string title)
         {
             if (string.IsNullOrWhiteSpace(title))
                 return null;
